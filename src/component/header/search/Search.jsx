@@ -51,6 +51,7 @@ const Search = ({ history }) => {
     e.preventDefault();
     history.push(`/search?term=${value}&select=${selector}`);
   };
+  console.log(selector);
   return (
     <SearchWrapper>
       <SearchInputer

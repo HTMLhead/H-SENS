@@ -38,7 +38,13 @@ const Select = styled(Dropdown)`
 const Filter = ({ selector, setSelector }) => {
   return (
     <SelectorContainer>
-      <Select placeholder="Works" fluid selection options={list} />
+      <Select
+        placeholder="Works"
+        fluid
+        selection
+        options={list}
+        onChange={e => setSelector(e.target.textContent)}
+      />
     </SelectorContainer>
   );
 };
