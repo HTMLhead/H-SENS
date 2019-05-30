@@ -30,16 +30,18 @@ const StyledSearchBtn = styled.button`
   align-items: center;
   background: center url(${process.env.REACT_APP_CLIENT_URL}/image/searchBtnHover.png)
     no-repeat;
-  width: 10%;
+  width: 7%;
   height: 100%;
   color: #011627;
   border-bottom: 1px solid #011627;
   transition: background 0.3s;
   margin-right: 2.5%;
   border: 0;
+  background-size: contain;
   &:hover {
     background: center url(${process.env.REACT_APP_CLIENT_URL}/image/searchBtn.png)
       no-repeat;
+    background-size: contain;
     transition: background 0.3s;
   }
 `;

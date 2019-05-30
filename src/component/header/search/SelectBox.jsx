@@ -5,6 +5,8 @@ import list from './SelectBoxList';
 
 const SelectorContainer = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
   width: 15%;
   height: 100%;
   margin-left: 2.5%;
@@ -21,8 +23,8 @@ const Wrapper = styled.select`
 `;
 const Select = styled(Dropdown)`
   &&& {
+    padding: 0.5rem 0 0 0.7rem;
     margin: 0;
-    padding: 0;
     border: 1px solid #000;
     display: flex;
     align-items: center;
@@ -30,7 +32,6 @@ const Select = styled(Dropdown)`
       display: inline-block;
       vertical-align: inherit;
       color: #000;
-      padding: 0.5rem 0 0 0.7rem;
     }
   }
 `;
