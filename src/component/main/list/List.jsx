@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { gql } from 'apollo-boost';
 import { useQuery } from 'react-apollo-hooks';
 
-import Logout from '../logout/Logout';
 import ListContainer from './ListContainer';
 import fillArray from './fillArray';
 import Line from './Line';
@@ -11,14 +10,24 @@ import Line from './Line';
 const NextButton = styled.button`
   position: absolute;
   top: 10%;
-  left: 30%;
+  left: 15%;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  background-color: ${props => (props.disabled ? 'red' : '#333')};
+  border-radius: 50%;
   border: 1px solid #fff;
 `;
 
 const BefButton = styled.button`
+  font-size: 1.5rem;
   position: absolute;
   top: 10%;
-  left: 25%;
+  left: 8%;
+  width: 2rem;
+  height: 2rem;
+  background-color: ${props => (props.disabled ? 'red' : '#333')};
+  border-radius: 50%;
   border: 1px solid #fff;
 `;
 
@@ -59,12 +68,11 @@ const List = () => {
   return (
     <>
       <BefButton onClick={handleBefBtn} disabled={pagenation <= 1 ? 'disabled' : null}>
-        Before
+        ←
       </BefButton>
       <NextButton onClick={handleNextBtn} disabled={bLastPage ? 'disabled' : null}>
-        Next
+        →
       </NextButton>
-      <Logout />
       <ListContainer onScroll={multiScroll}>
         {workLists.length &&
           workLists.map((workList, i) => {
