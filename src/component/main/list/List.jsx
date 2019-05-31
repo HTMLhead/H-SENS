@@ -6,6 +6,7 @@ import { useQuery } from 'react-apollo-hooks';
 import ListContainer from './ListContainer';
 import fillArray from './fillArray';
 import Line from './Line';
+import MainLoadingAni from '../MainLoadingAni';
 
 const NextButton = styled.button`
   position: absolute;
@@ -49,6 +50,7 @@ const List = () => {
     variables: { index: pagenation },
   });
   const [scroll, setScroll] = useState('');
+
   useEffect(() => {
     if (loading) return;
     const works = data.seeWorks;
@@ -65,7 +67,9 @@ const List = () => {
     setScroll(e.target.scrollTop);
   };
 
-  return (
+  return loading ? (
+    <MainLoadingAni />
+  ) : (
     <>
       <BefButton onClick={handleBefBtn} disabled={pagenation <= 1 ? 'disabled' : null}>
         ←
