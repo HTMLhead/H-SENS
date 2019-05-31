@@ -4,6 +4,7 @@ import { useMutation } from 'react-apollo-hooks';
 import styled from 'styled-components';
 import { Viewer } from '@toast-ui/react-editor';
 import { SEE_WORK } from '../workEditor/WorkQueries';
+import { Loader } from 'semantic-ui-react';
 
 const WorkCover = styled.div`
   display: ${props => (props.target ? 'block' : 'none')};
@@ -52,6 +53,7 @@ const WorkDetail = ({
   searchWork,
   search,
 }) => {
+  const [loading, setLoading] = useState(false);
   const [work, setWork] = useState(null);
   const getWorkInfo = useMutation(SEE_WORK, {
     variables: { workid: workid || searchWork },
@@ -59,13 +61,16 @@ const WorkDetail = ({
 
   useEffect(() => {
     const getWork = async () => {
+      await setLoading(true);
       const {
         data: { seeWork },
       } = await getWorkInfo();
+      await setLoading(false);
       return setWork(seeWork);
     };
     getWork();
   }, []);
+
   window.scrollTo(0, window.innerHeight);
   document.body.style.overflowY = 'hidden';
   return (
