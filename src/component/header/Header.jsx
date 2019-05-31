@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Dropdown } from 'semantic-ui-react';
 import styled from 'styled-components';
 import { gql } from 'apollo-boost';
 import { useQuery } from 'react-apollo-hooks';
 import PumpLoadingAni from '../authorization/PumpLoadingAni';
 import MainLogo from './MainLogo';
-import UserLinkBtn from './UserLinkBtn';
+import UserDropdown from './UserLinkBtn';
 import Search from './search/Search';
 
 const HeaderContainer = styled.header`
@@ -38,15 +39,39 @@ const QUERY = gql`
 
 const Header = ({ isLoggedIn }) => {
   const { data, loading } = useQuery(QUERY);
+
+  const logoutEvt = () => {
+    window.localStorage.removeItem('token');
+    window.location.replace(`${process.env.REACT_APP_CLIENT_URL}`);
+  };
+
   if (!loading) {
     return (
       <HeaderContainer className="header">
         <MainLogo as={Link} to="/" />
         <Search />
-        <UserLinkBtn
-          to={isLoggedIn ? `/${data.currentUser.userid}` : '/signin'}
+        <UserDropdown
+          icon={null}
           userimage={isLoggedIn ? data.currentUser.userimage : null}
-        />
+        >
+          {isLoggedIn ? (
+            <Dropdown.Menu>
+              <Dropdown.Item
+                as={Link}
+                to={isLoggedIn ? `/${data.currentUser.userid}` : '/signin'}
+              >
+                account
+              </Dropdown.Item>
+              <Dropdown.Item onClick={logoutEvt}>Sign Out</Dropdown.Item>
+            </Dropdown.Menu>
+          ) : (
+            <Dropdown.Menu>
+              <Dropdown.Item as={Link} to="/signin">
+                Sign In
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          )}
+        </UserDropdown>
       </HeaderContainer>
     );
   }
