@@ -9,27 +9,39 @@ import Line from './Line';
 import MainLoadingAni from '../MainLoadingAni';
 
 const NextButton = styled.button`
+  color: #fff;
+  font-size: 9rem;
   position: absolute;
-  top: 10%;
-  left: 15%;
+  top: 45%;
+  right: 8%;
   width: 2rem;
   height: 2rem;
-  font-size: 1.5rem;
-  background-color: ${props => (props.disabled ? 'red' : '#333')};
-  border-radius: 50%;
-  border: 1px solid #fff;
+  background-color: transparent;
+  z-index: 5;
+  opacity: 0.1;
+  &:hover {
+    opacity: ${props => (props.disabled ? '0.1' : '0.6')};
+  }
+  border: none;
+  outline: none;
 `;
 
 const BefButton = styled.button`
-  font-size: 1.5rem;
+  color: #fff;
+  font-size: 9rem;
   position: absolute;
-  top: 10%;
-  left: 8%;
+  top: 45%;
+  left: 1%;
   width: 2rem;
   height: 2rem;
-  background-color: ${props => (props.disabled ? 'red' : '#333')};
-  border-radius: 50%;
-  border: 1px solid #fff;
+  background-color: transparent;
+  z-index: 5;
+  opacity: 0.1;
+  &:hover {
+    opacity: ${props => (props.disabled ? '0.1' : '0.6')};
+  }
+  border: none;
+  outline: none;
 `;
 
 const QUERY = gql`
@@ -72,10 +84,10 @@ const List = () => {
   ) : (
     <>
       <BefButton onClick={handleBefBtn} disabled={pagenation <= 1 ? 'disabled' : null}>
-        ←
+        ◀︎
       </BefButton>
       <NextButton onClick={handleNextBtn} disabled={bLastPage ? 'disabled' : null}>
-        →
+        ▶︎
       </NextButton>
       <ListContainer onScroll={multiScroll}>
         {workLists.length &&
