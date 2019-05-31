@@ -5,6 +5,7 @@ import { useQuery } from 'react-apollo-hooks';
 import { gql } from 'apollo-boost';
 import UserInfo from './UserInfo';
 import Works from './works/Works';
+import MainLoadingAni from '../main/MainLoadingAni';
 
 const User = styled.div`
   position: relative;
@@ -40,7 +41,7 @@ function UserPage({
     variables: { userid },
   });
 
-  if (loading) return null;
+  if (loading) return <MainLoadingAni />;
   return (
     <User>
       <UserInfo
